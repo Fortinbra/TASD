@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtasd.a CMakeFiles/tasd.dir/src/tasd.c.o
+/usr/bin/ranlib libtasd.a
