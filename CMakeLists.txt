@@ -28,8 +28,10 @@ target_include_directories(tasd PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
-# Strict warnings when building as the top-level project
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+# Strict warnings for CHIRBot firmware and standalone builds
+if(COMMAND chirbot_enable_strict_warnings)
+    chirbot_enable_strict_warnings(tasd)
+elseif(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     if(MSVC)
         target_compile_options(tasd PRIVATE /W4 /WX)
     else()

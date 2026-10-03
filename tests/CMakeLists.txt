@@ -1,4 +1,11 @@
 add_executable(test_tasd test_tasd.c)
+if(COMMAND chirbot_enable_strict_warnings)
+	chirbot_enable_strict_warnings(test_tasd)
+elseif(MSVC)
+	target_compile_options(test_tasd PRIVATE /W4 /WX)
+else()
+	target_compile_options(test_tasd PRIVATE -Wall -Wextra -Werror)
+endif()
 target_link_libraries(test_tasd PRIVATE tasd)
 
 add_test(NAME test_tasd COMMAND test_tasd)
